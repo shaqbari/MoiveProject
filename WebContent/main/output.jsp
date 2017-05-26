@@ -9,10 +9,11 @@
 	
 </head>
 <body>
-<!--
-	맛있[가-힣]+
-	맛없[]
-
-  -->
+	<%
+		// ?name=홍길동
+		//	==== ==== Map
+		String name=request.getParameter("name");
+	%>
+	<%=name %>
 </body>
 </html>

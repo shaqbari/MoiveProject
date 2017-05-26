@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.sist.movie.*, java.util.*"%>
+<jsp:useBean id="mgr" class="com.sist.movie.MovieManager"/>
+<%
+	//데이터 읽기
+	List<MovieVO> list=mgr.movieMainData();
+%>
 <%/* <!-- 
 	1) JSP (JAVA SERVER Page)
 	=지시자
@@ -145,9 +150,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="table.css"/>
 </head>
-<%! int i=0; %>
 <body>
-	<%="Hello JAVA!!" %>
-</body>
-</html>
+		<center>
+			<table id="table_content" width=800>
+				<tr>
+					<%for(MovieVO vo:list){	%>
+						<td>
+						<!--get방식으로 보낼때 한글안깨지게 server.xml에 설정해두면 편하다. jsp책 88page -->
+							<a href="detail.jsp?midx=<%=vo.getLink() %>">
+								<img src="<%=vo.getPoster() %>" width=200 height=240>
+							</a>
+						</td>
+					<%}%>
+				</tr>
+				<tr>
+					<%for(MovieVO vo:list){	%>
+						<td>
+							<%=vo.getGrade() %>
+						</td>
+					<%}%>
+				</tr>
+			</table>
+		</center>
+
+</body>/</html0>
